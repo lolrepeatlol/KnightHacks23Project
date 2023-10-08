@@ -1,6 +1,6 @@
 import math
 # opens file
-statement = open("September2023_2442.csv", "r")
+statement = open("September2023.csv", "r")
 # print("Name of the file: ", statement.name)
 # takes each line in a file and puts it in a list
 listOfStatements = statement.readlines()

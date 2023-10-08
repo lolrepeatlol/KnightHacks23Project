@@ -29,7 +29,7 @@ def show_pie_chart():
     # Create a Tkinter canvas to display the Matplotlib figure
     canvas = FigureCanvasTkAgg(fig, master=root)
     canvas_widget = canvas.get_tk_widget()
-    canvas_widget.place(x= 500, y = 0)
+    canvas_widget.place(x= 500, y = 30)
 
 
 def show_pie_chartExpected():
@@ -49,7 +49,7 @@ def show_pie_chartExpected():
     # Create a Tkinter canvas to display the Matplotlib figure
     canvas = FigureCanvasTkAgg(fig, master=root)
     canvas_widget = canvas.get_tk_widget()
-    canvas_widget.place(x= 800, y = 0)
+    canvas_widget.place(x= 800, y = 30)
 def on_configure(event):
     canvas.configure(scrollregion=canvas.bbox("all"))
 
@@ -62,8 +62,6 @@ root.title("View Budget")
 def open_stocks_viewer():
     stocks_fe.create_new_window(root)
 
-stocks_button = tk.Button(root, text="View Stocks", command=open_stocks_viewer)
-stocks_button.place(x=1100, y=50)
 
 # Create 1st box
 checking = Frame(root, width=350, height=150)
@@ -136,16 +134,43 @@ transactionListHeader.place(x = 440, y = 254)
 transactionListHeaderText = tk.Label(root, text="Recent Transactions", bg="#3e3e42", foreground="white", font=customFont)
 transactionListHeaderText.place(x=440, y=254)
 
+image3 = PhotoImage(file="ad.PNG")
+new_width3 = image3.width() // 2
+new_height3 = image3.height()
+resized_image3 = image3.subsample(2,2)
+
+# Create a label to display the image
+label4 = tk.Label(root, image=resized_image3)
+label4.place(x = 1050, y = 30)
+
 # Load the image
 image = PhotoImage(file="Untitled.png")
 new_width = image.width() // 2
 new_height = image.height()
 resized_image = image.subsample(5,5)
+
+toolbar = Frame(root, width= 2000, height=70, bg ="#727880")
+toolbar.place(x = 0, y=0)
+
+# Load the image
+image2 = PhotoImage(file="logo.PNG")
+new_width2 = image2.width() // 2
+new_height2 = image2.height()
+resized_image2 = image2.subsample(5,5)
 transactionList.config(width=100, height=1500)
 
 # Create a label to display the image
+label3 = tk.Label(root, image=resized_image2, bg="#727880")
+label3.place(x = 20, y = 20)
+# Create a label to display the image
 label = tk.Label(root, image=resized_image)
 label.place(x= 1050, y=500) 
+
+
+stocks_button = tk.Button(root, text="View Stocks", command=open_stocks_viewer)
+stocks_button.place(x= 1200, y = 25)
+
+
 
 
 
