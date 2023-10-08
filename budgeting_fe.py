@@ -11,14 +11,16 @@ from PIL import Image, ImageTk
 
 # Create a function to display the pie chart
 def show_pie_chart():
-    # Sample data for the pie chart
-    categories = ['Technology', 'Retail', 'Rent', 'Accomodations']
+     # Sample data for the pie chart (you can replace this with your data)
+    categories = ['Category A', 'Category B', 'Category C', 'Category D']
     values = [random.randint(1, 10) for _ in categories]
 
     # Create a Matplotlib Figure and a subplot for the pie chart
     fig = Figure(figsize=(3, 3), dpi=80)
     subplot = fig.add_subplot(111)
     
+
+
     # Create the pie chart using Matplotlib
     subplot.pie(values, autopct='%1.1f%%', startangle=90)
     subplot.set_facecolor('black')
@@ -29,11 +31,6 @@ def show_pie_chart():
     canvas_widget = canvas.get_tk_widget()
     canvas_widget.place(x= 500, y = 0)
 
-     # Create legends for each category
-    legend_labels = [f'{category}: {value}' for category, value in zip(categories, values)]
-
-    # Move the legend to the bottom right
-    subplot.legend(legend_labels, title="Categories", loc="lower right", bbox_to_anchor=(1, 0))
 
 def show_pie_chartExpected():
     # Sample data for the pie chart
