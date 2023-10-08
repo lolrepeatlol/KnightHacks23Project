@@ -11,7 +11,7 @@ from PIL import Image, ImageTk
 
 # Create a function to display the pie chart
 def show_pie_chart():
-    # Sample data for the pie chart (you can replace this with your data)
+    # Sample data for the pie chart
     categories = ['Category A', 'Category B', 'Category C', 'Category D']
     values = [random.randint(1, 10) for _ in categories]
 
@@ -30,7 +30,7 @@ def show_pie_chart():
     canvas_widget.place(x= 500, y = 0)
 
 def show_pie_chartExpected():
-    # Sample data for the pie chart (you can replace this with your data)
+    # Sample data for the pie chart
     categories = ['Category A', 'Category B', 'Category C', 'Category D']
     values = [random.randint(1, 10) for _ in categories]
 
@@ -135,7 +135,7 @@ transactionListHeaderText.place(x=440, y=254)
 
 # Load the image
 image = PhotoImage(file="Untitled.png")
-new_width = image.width() // 2  # You can adjust the factor as needed
+new_width = image.width() // 2
 new_height = image.height()
 resized_image = image.subsample(5,5)
 transactionList.config(width=100, height=1500)
