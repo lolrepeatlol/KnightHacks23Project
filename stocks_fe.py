@@ -1,7 +1,8 @@
 import tkinter as tk
-import stocks
+from tkinter import font
 import requests
-
+import matplotlib.pyplot as plt
+import stocks
 api_key = 'api-key'
 
 # Create the main Tkinter window
@@ -9,18 +10,43 @@ root = tk.Tk()
 root.title("View Stocks")
 root.config(bg="#1e1e1e")
 
+# Specify fonts
+titleFont = font.Font(size=28, weight="bold")
+labelFont = font.Font(size=14, weight="normal")
+
 # Function to handle button click for a specific stock
 def display_stock_info(stock_data):
-    # Create a new Tkinter window
+    # Create a new Tkinter window and set its size
     stock_window = tk.Toplevel(root)
     stock_window.title("Information for Stock")
+    stock_window.geometry("400x300")
+
+    top_left = tk.Frame(stock_window)
+    top_right = tk.Frame(stock_window)
+    top_left.grid(column=0, row=0, padx=25, pady=25)
+    top_right.grid(column=1, row=0, padx=25, pady=25, sticky=(tk.N, tk.E))
 
     # Update symbol in stocks python file
     stocks.update_symbol_value(stock_data)
 
+    # Create a title to display stock basics
+    stock_title = tk.Label(top_left, text="", font=titleFont)
+    stock_title.pack()
+
+    stock_price = tk.Label(top_right, text="", font=titleFont)
+    stock_price.pack()
+
     # Create a label to display stock information
-    stock_label = tk.Label(stock_window, text="")
+    stock_label = tk.Label(top_left, text="", font=labelFont)
     stock_label.pack()
+
+    # Create image for stock and display
+    newImage = stocks.create_graph()
+    img_label = tk.Label(top_right, image=newImage)
+    img_label.image = newImage
+    img_label.pack()
+
+    # latest_dte = stocks.dTECalc()
 
     # Access the stock data and display it
     symbol = stock_data['ticker']
@@ -59,6 +85,8 @@ def display_stock_info(stock_data):
     # Access the stock data and display it
     stock_label.config(text=f"Symbol: {stock_data['ticker']}\nPrice: {stock_data['price']}\nDtE: {dte}\n high current ratio: {high_current}\n working capital: {working_capital}\n quick ratio: {quick_ratio}\n p/b ratio: {pb_ratio}\n")
 
+    stock_title.config(text=f"{stock_data['ticker']}")
+    stock_price.config(text=f"${stock_data['price']}")
 
 # def update_backend_variable(stock_data):
 
