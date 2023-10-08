@@ -60,7 +60,7 @@ def open_stocks_viewer():
     stocks_fe.create_new_window(root)
 
 stocks_button = tk.Button(root, text="View Stocks", command=open_stocks_viewer)
-stocks_button.pack()
+stocks_button.place(x=1100, y=50)
 
 # Create 1st box
 checking = Frame(root, width=350, height=150)

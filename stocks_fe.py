@@ -95,5 +95,5 @@ def create_new_window(parent):
     # Create buttons for each stock
     for stock_data in stock_data_list:
         i += 1
-        stock_button = tk.Button(button_frame, text=f"{i}. {stock_data['ticker']}", command=lambda s=stock_data: display_stock_info(s), bg="#1e1e1e", padx=10, pady=5)
+        stock_button = tk.Button(button_frame, text=f"{i}. {stock_data['ticker']}", command=lambda s=stock_data: display_stock_info(s), bg="#1e1e1e", fg="ffffff", padx=10, pady=5)
         stock_button.pack()
