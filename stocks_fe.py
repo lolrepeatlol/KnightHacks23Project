@@ -22,13 +22,13 @@ def create_new_window(parent):
 
     # Specify window fonts and create frame for top, then add padding
     title_frame = tk.Frame(new_window)
-    home_title = tk.Label(title_frame, text="Your Stocks", font=titleFont, bg="#1e1e1e")
+    home_title = tk.Label(title_frame, text="Your Stocks", font=titleFont, bg="#1e1e1e", fg="#ffffff")
     title_frame.grid(column=0, row=0, padx=25, pady=25)
     home_title.pack()
 
     # Add fake image to the right
     image_frame = tk.Frame(new_window)
-    performance_title = tk.Label(image_frame, text="Overall Performance", font=titleFont, bg="#1e1e1e")
+    performance_title = tk.Label(image_frame, text="Overall Performance", font=titleFont, bg="#1e1e1e", fg="#ffffff")
     performance_title.grid(column=0, row=1, padx=25, pady=5)
     image_frame.grid(column=1, row=1, padx=25, pady=25)
 
@@ -57,16 +57,16 @@ def create_new_window(parent):
         stocks.update_symbol_value(stock_data)
 
         # Create a title to display stock basics
-        stock_title = tk.Label(top_left, text="", font=titleFont)
+        stock_title = tk.Label(top_left, text="", font=titleFont, bg="#1e1e1e", fg="#ffffff")
         stock_title.pack()
 
-        stock_price = tk.Label(top_right, text="", font=titleFont)
+        stock_price = tk.Label(top_right, text="", font=titleFont, bg="#1e1e1e", fg="#ffffff")
         stock_price.pack()
-        stock_recent = tk.Label(top_right, text="", font=labelFont)
+        stock_recent = tk.Label(top_right, text="", font=labelFont, bg="#1e1e1e", fg="#ffffff")
         stock_recent.pack()
 
         # Create a label to display stock information
-        stock_label = tk.Label(top_left, text="", font=labelFont)
+        stock_label = tk.Label(top_left, text="", font=labelFont, bg="#1e1e1e", fg="#ffffff")
         stock_label.pack()
 
         # Create image for stock and display
