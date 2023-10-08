@@ -5,9 +5,12 @@ statement = open("September2023_2442.csv", "r")
 # takes each line in a file and puts it in a list
 listOfStatements = statement.readlines()
 untilChar = '",'
+untilChar2 = ',"'
+untilChar3 = '",'
 allTransactionsString = []
 allTransactionsFloat = []
 allOldTransactionFloar = []
+stringArray = []
 counterForArray = 0
 sumOfTransactionNotR = 0
 sumOfTransactionR = 0
@@ -18,6 +21,9 @@ for x in listOfStatements:
     if untilChar in x:
         # if the until char is found in the line of the file we split it to the content after the car until char
         contentAfterStart = x.split(untilChar, -2)[-1]
+        contentAfterStart2 = x.split(untilChar2, 1)[1]
+        desired_string = contentAfterStart2.split(untilChar3)[0]
+        stringArray.insert(counterForArray, desired_string)
         # inserting the split content into a string array
         allTransactionsString.insert(counterForArray, contentAfterStart)
         # counter for the array
@@ -45,10 +51,6 @@ for transaction in allTransactionsFloat:
     counterForArray += 1
 sumOfRoundedUp = round(sumOfRoundedUp, 2)
 checkingTotal = checkingTotal - sumOfRoundedUp
-print("old transaction", allOldTransactionFloar)
-print("New ", allTransactionsFloat, "\n")
-print("sum of round ups", sumOfRoundedUp)
-print("sum of transactions without added roundup:", sumOfTransactionNotR)
-print("sum of transactions after roundup:", sumOfTransactionR)
-
+sumOfTransactionR = float(sumOfTransactionR)
+print(stringArray)
 statement.close()

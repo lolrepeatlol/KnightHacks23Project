@@ -64,7 +64,7 @@ checkingText = tk.Label(root, text="Checking .... 4356", bg="#3e3e42", foregroun
 checkingText.place(x=21, y=80)
 customFont4checkingText1 = ("Helvetica", 30)
 checkingText1 = tk.Label(root, text=budgeting.checkingTotal, bg="#3e3e42", foreground="white", font= customFont4checkingText1)
-checkingText1.place(x=70, y=130)
+checkingText1.place(x=170, y=150)
 
 # Create 2nd box
 spareSum = Frame(root, width=350, height=150)
@@ -72,6 +72,8 @@ spareSum.place(x= 21, y = 275)
 spareSum.config(bg = "#3e3e42")
 spareSumText = tk.Label(root, text="Change Saved This Month", bg="#3e3e42", foreground="white", font=customFont)
 spareSumText.place(x=21, y=275)
+squareSumText1 = tk.Label(root, text=budgeting.sumOfRoundedUp, bg="#3e3e42", foreground="white", font= customFont4checkingText1)
+squareSumText1.place(x=230, y=345)
 
 # Create 3rd box
 monthlySpending = Frame(root, width=350, height=150)
@@ -79,6 +81,10 @@ monthlySpending.place(x= 21, y = 470)
 monthlySpending.config(bg = "#3e3e42")
 monthlySpendingText = tk.Label(root, text="Money Spent This Month", bg="#3e3e42", foreground="white", font=customFont)
 monthlySpendingText.place(x=21, y= 470)
+formatted_float = "{:.2f}".format(budgeting.sumOfTransactionR)
+monthlySpendingText1 = tk.Label(root, text=formatted_float, bg="#3e3e42", foreground="white", font= customFont4checkingText1)
+monthlySpendingText1.place(x=170, y=540)
+
 
 
 
@@ -104,7 +110,7 @@ canvas.create_window((0, 0), window=list_frame, anchor="nw")
 counterforsomething = 0
 for i in budgeting.allOldTransactionFloar: 
     listbox = tk.Label(list_frame, text=f"{i:.2f}", anchor="w")
-    listbox.pack(fill=tk.X)
+    listbox.pack(fill=tk.X, pady=5, padx=310)
     counterforsomething += 1
 # Bind the canvas to the frame size
 list_frame.bind("<Configure>", on_configure)
