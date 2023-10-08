@@ -1,6 +1,6 @@
 import requests
 
-api_key = 'api-key'
+api_key = 'PM6E5WUVQVZ37IQR'
 
 # Define the API endpoint for retrieving most actively traded US stocks
 endpointAT = f'https://www.alphavantage.co/query?function=TOP_GAINERS_LOSERS&apikey={api_key}'
@@ -15,7 +15,7 @@ if responseAT.status_code == 200 :
 
     if most_actively_traded is not None:
         for stock in most_actively_traded:
-            print("Name: " + stock['ticker'] + ", Price: " + stock['price'], ", Recent Change: " + stock['change_amount'])
+            print("Name: " + stock['ticker'] + ", Price: " + stock['price'], ", Recent Change: $" + stock['change_amount'])
     else:
         print(f"Failed to fetch most actively traded stocks. Status code: {responseAT.status_code}")
 
@@ -70,7 +70,7 @@ class BalanceSheetReport:
         self.common_stock = common_stock
         self.common_stock_shares_outstanding = common_stock_shares_outstanding
 
-#create income sheet report 
+#create income sheet report
 class IncomeSheetReport:
     def __init__(self, fiscal_date, reported_currency, gross_profit, total_revenue, cost_of_revenue,
                  cost_of_goods_and_services_sold, operating_income, selling_general_and_administrative,
@@ -135,11 +135,11 @@ def get_stock_quote(symbol, api_key):
 def get_income_sheet(symbol, api_key):
     url = f'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol={symbol}&apikey={api_key}'
     response = requests.get(url)
-    data = response.json() 
+    data = response.json()
     return data
 
-def create_income_sheet_reports(api_data): 
-    reports = [] 
+def create_income_sheet_reports(api_data):
+    reports = []
     if 'annualReports' in api_data:
         annual_reports = api_data['annualReports']
         for report_data in annual_reports:
@@ -172,7 +172,7 @@ def create_income_sheet_reports(api_data):
                 net_income=report_data.get('netIncome', 'N/A')
             )
             reports.append(report)
-    
+
     return reports
 
 def create_balance_sheet_reports(api_data):
@@ -256,7 +256,7 @@ income_sheet_reports = []
 stock_quotes = []
 
 
-symbol = input("Enter a stock symbol: ")
+symbol = None # = input("Enter a stock symbol: ") # if we would do CLI input
 
 # Fetch balance sheet data for the stock symbol
 api_balance = get_balance_sheet(symbol, api_key)
@@ -286,7 +286,7 @@ if (balance_sheet_reports):
 
 #metrics
 
-#Rank 1: Is it ran well 
+#Rank 1: Is it ran well
 
 #debt-to-equity
 debt_to_equity = []
@@ -295,34 +295,34 @@ for i in range(len(balance_sheet_reports)):
         # Convert the string values to floats before subtraction
         total_assets = float(balance_sheet_reports[i].total_assets)
         total_liabilities = float(balance_sheet_reports[i].total_liabilities)
-        
+
         # Calculate debt to equity ratio
         debt_to_equity_ratio = total_assets / total_liabilities
-        
+
         # Append the result to the list
         debt_to_equity.append(debt_to_equity_ratio)
-        
-        print(f"Debt to Equity for {balance_sheet_reports[i].fiscal_date}: {debt_to_equity_ratio}")  
+
+        print(f"Debt to Equity for {balance_sheet_reports[i].fiscal_date}: {debt_to_equity_ratio}")
         '''
         Ideal current ratio: > 1.5; “$1.5 received in cash every time debt of $1 must be paid within twelve months.” (range: 1.5 – 2.5) 
         Goal: company receives more in cash than it pays in debt 
         Ratio of < 1; “company acquires new debt to pay off existing debt obligation 
         Ratio > 2.5; extremely high liquidity; “inability to collect payment from vendors” * 
-        '''    
+        '''
     else:
         print("unable to fetch")
 
 #High current ratio
-high_current_ratios = [] 
+high_current_ratios = []
 for i in range(len(balance_sheet_reports)):
     if i < len(balance_sheet_reports):
-        total_current_asset = float(balance_sheet_reports[i].total_current_assets) 
+        total_current_asset = float(balance_sheet_reports[i].total_current_assets)
         total_current_liability = float(balance_sheet_reports[i].total_current_liabilities)
 
         #calculate high current ratio
-        high_current = total_current_asset / total_current_liability 
+        high_current = total_current_asset / total_current_liability
 
-        high_current_ratios.append(high_current) 
+        high_current_ratios.append(high_current)
 
         print(f"High current ratio for {balance_sheet_reports[i].fiscal_date}: {high_current}")
         '''
@@ -356,5 +356,3 @@ for i in range(len(balance_sheet_reports)):
             Evaluate D/E first, then ROE; companies with low D/E don’t have as high ROEs but they are often more sustainable 
             
 '''
-#Price-to-Earnings ratio 
-
