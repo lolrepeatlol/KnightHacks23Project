@@ -1,6 +1,6 @@
 import requests
 
-api_key = 'api_key'
+api_key = '25KI283QX1PSWXXC'
 
 # Define the API endpoint for retrieving most actively traded US stocks
 endpointAT = f'https://www.alphavantage.co/query?function=TOP_GAINERS_LOSERS&apikey={api_key}'
@@ -375,7 +375,7 @@ for i in range(len(balance_sheet_reports)):
 def create_graph():
     print(f"{symbol['ticker']}")
     # Create graph for stocks
-    endpointGraph = f'https://www.alphavantage.co/query?function=TIME_SERIES_WEEKLY_ADJUSTED&symbol={symbol}&apikey={api_key}'
+    endpointGraph = f"https://www.alphavantage.co/query?function=TIME_SERIES_WEEKLY_ADJUSTED&symbol={symbol['ticker']}&apikey={api_key}"
 
     responseGraph = requests.get(endpointGraph)
     dataG = responseGraph.json()

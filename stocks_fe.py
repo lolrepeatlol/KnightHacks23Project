@@ -3,7 +3,7 @@ from tkinter import font
 import requests
 import matplotlib.pyplot as plt
 import stocks
-api_key = 'api-key'
+api_key = '25KI283QX1PSWXXC'
 
 # Create the main Tkinter window
 root = tk.Tk()
