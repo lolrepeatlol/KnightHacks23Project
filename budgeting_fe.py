@@ -109,8 +109,11 @@ canvas.create_window((0, 0), window=list_frame, anchor="nw")
 # adding the items in
 counterforsomething = 0
 for i in budgeting.allOldTransactionFloar: 
+    listbox2 = tk.Label(list_frame, text=budgeting.stringArray[counterforsomething], anchor="w")
+    listbox2.pack(fill=tk.X, pady=(0, 20), padx=0)
     listbox = tk.Label(list_frame, text=f"{i:.2f}", anchor="w")
     listbox.pack(fill=tk.X, pady=5, padx=310)
+
     counterforsomething += 1
 # Bind the canvas to the frame size
 list_frame.bind("<Configure>", on_configure)
