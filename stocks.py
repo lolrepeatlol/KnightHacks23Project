@@ -2,7 +2,7 @@ import requests
 import matplotlib.pyplot as plt
 from PIL import Image, ImageTk
 
-api_key = 'S7MP51O2XA2BLBJB'
+api_key = 'LC7Y4XYIT0FTNI6M'
 
 # Define the API endpoint for retrieving most actively traded US stocks
 endpointAT = f'https://www.alphavantage.co/query?function=TOP_GAINERS_LOSERS&apikey={api_key}'

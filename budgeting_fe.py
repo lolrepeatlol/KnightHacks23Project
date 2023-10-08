@@ -6,6 +6,7 @@ from matplotlib.figure import Figure
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import random
 from tkinter import PhotoImage
+import stocks_fe
 from PIL import Image, ImageTk
 
 # Create a function to display the pie chart
@@ -36,8 +37,6 @@ def show_pie_chartExpected():
     # Create a Matplotlib Figure and a subplot for the pie chart
     fig = Figure(figsize=(3, 3), dpi=80)
     subplot = fig.add_subplot(111)
-    
-    
 
     # Create the pie chart using Matplotlib
     subplot.pie(values, autopct='%1.1f%%', startangle=90)
@@ -50,11 +49,18 @@ def show_pie_chartExpected():
     canvas_widget.place(x= 800, y = 0)
 def on_configure(event):
     canvas.configure(scrollregion=canvas.bbox("all"))
-    
+
+
 root = tk.Tk()
 root.title("Basic GUI Layout")  # title of the GUI window
 root.config(bg="#1e1e1e")  # specify background color
 root.title("View Budget")
+
+def open_stocks_viewer():
+    stocks_fe.create_new_window(root)
+
+stocks_button = tk.Button(root, text="View Stocks", command=open_stocks_viewer)
+stocks_button.pack()
 
 # Create 1st box
 checking = Frame(root, width=350, height=150)
@@ -85,9 +91,6 @@ monthlySpendingText.place(x=21, y= 470)
 formatted_float = "{:.2f}".format(budgeting.sumOfTransactionR)
 monthlySpendingText1 = tk.Label(root, text=formatted_float, bg="#3e3e42", foreground="white", font= customFont4checkingText1)
 monthlySpendingText1.place(x=170, y=540)
-
-
-
 
 # transactions list
 transactionList = Frame(root, width = 350, height=900, bg="white")
