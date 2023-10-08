@@ -19,8 +19,10 @@ def display_stock_info(stock_data):
     stock_label = tk.Label(stock_window, text="")
     stock_label.pack()
 
+    latest_dte = stocks.dTECalc()
+
     # Access the stock data and display it
-    stock_label.config(text=f"Symbol: {stock_data['ticker']}\nPrice: {stock_data['price']}\n")
+    stock_label.config(text=f"Symbol: {stock_data['ticker']}\nPrice: {stock_data['price']}, DtE: {latest_dte}\n")
 
 
 # def update_backend_variable(stock_data):

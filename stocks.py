@@ -293,29 +293,39 @@ if (balance_sheet_reports):
 #Rank 1: Is it ran well
 
 #debt-to-equity
-debt_to_equity = []
-for i in range(len(balance_sheet_reports)):
-    if i < len(balance_sheet_reports):
-        # Convert the string values to floats before subtraction
-        total_assets = float(balance_sheet_reports[i].total_assets)
-        total_liabilities = float(balance_sheet_reports[i].total_liabilities)
+def dTECalc():
+    debt_to_equity = []
+    latestDTE = None
+    for i in range(len(balance_sheet_reports)):
 
-        # Calculate debt to equity ratio
-        debt_to_equity_ratio = total_assets / total_liabilities
+        if i < len(balance_sheet_reports):
+            # Convert the string values to floats before subtraction
+            total_assets = float(balance_sheet_reports[i].total_assets)
+            total_liabilities = float(balance_sheet_reports[i].total_liabilities)
 
-        # Append the result to the list
-        debt_to_equity.append(debt_to_equity_ratio)
+            # Calculate debt to equity ratio
+            debt_to_equity_ratio = total_assets / total_liabilities
 
-        latestDTE = debt_to_equity[0]
-        print(f"Debt to Equity for {balance_sheet_reports[i].fiscal_date}: {debt_to_equity_ratio}")
-        '''
-        Ideal current ratio: > 1.5; “$1.5 received in cash every time debt of $1 must be paid within twelve months.” (range: 1.5 – 2.5) 
-        Goal: company receives more in cash than it pays in debt 
-        Ratio of < 1; “company acquires new debt to pay off existing debt obligation 
-        Ratio > 2.5; extremely high liquidity; “inability to collect payment from vendors” * 
-        '''
-    else:
-        print("unable to fetch")
+            # Append the result to the list
+            debt_to_equity.append(debt_to_equity_ratio)
+
+            if i == 0 and balance_sheet_reports:
+                print("HELLOOOO")
+                latestDTE = debt_to_equity_ratio
+            else:
+                print("no")
+
+            print(f"Debt to Equity for {balance_sheet_reports[i].fiscal_date}: {debt_to_equity_ratio}")
+            '''
+            Ideal current ratio: > 1.5; “$1.5 received in cash every time debt of $1 must be paid within twelve months.” (range: 1.5 – 2.5) 
+            Goal: company receives more in cash than it pays in debt 
+            Ratio of < 1; “company acquires new debt to pay off existing debt obligation 
+            Ratio > 2.5; extremely high liquidity; “inability to collect payment from vendors” * 
+            '''
+        else:
+            print("unable to fetch")
+
+        return latestDTE
 
 
 #High current ratio
