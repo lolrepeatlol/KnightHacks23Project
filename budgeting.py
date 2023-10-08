@@ -52,5 +52,5 @@ for transaction in allTransactionsFloat:
 sumOfRoundedUp = round(sumOfRoundedUp, 2)
 checkingTotal = checkingTotal - sumOfRoundedUp
 sumOfTransactionR = float(sumOfTransactionR)
-print(stringArray)
+#print(stringArray)
 statement.close()
