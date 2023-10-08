@@ -1,6 +1,6 @@
 import requests
 
-api_key = 'PM6E5WUVQVZ37IQR'
+api_key = 'I5EARLQU03IU3M1A'
 
 # Define the API endpoint for retrieving most actively traded US stocks
 endpointAT = f'https://www.alphavantage.co/query?function=TOP_GAINERS_LOSERS&apikey={api_key}'
@@ -18,6 +18,16 @@ if responseAT.status_code == 200 :
             print("Name: " + stock['ticker'] + ", Price: " + stock['price'], ", Recent Change: $" + stock['change_amount'])
     else:
         print(f"Failed to fetch most actively traded stocks. Status code: {responseAT.status_code}")
+
+endpointAT2 = f'https://www.alphavantage.co/query?function=BALANCE_SHEET&apikey={api_key}'
+
+responseAT2 = requests.get(endpointAT2)
+
+if responseAT2.status_code == 200 :
+    data2 = responseAT2.json() 
+    annualReports = data2.get('annualReports') 
+
+
 
 #create balance sheet class
 class BalanceSheetReport:
@@ -294,6 +304,7 @@ if (balance_sheet_reports):
 
 #debt-to-equity
 debt_to_equity = []
+
 for i in range(len(balance_sheet_reports)):
     if i < len(balance_sheet_reports):
         # Convert the string values to floats before subtraction
@@ -306,7 +317,6 @@ for i in range(len(balance_sheet_reports)):
         # Append the result to the list
         debt_to_equity.append(debt_to_equity_ratio)
 
-        latestDTE = debt_to_equity[0]
         print(f"Debt to Equity for {balance_sheet_reports[i].fiscal_date}: {debt_to_equity_ratio}")
         '''
         Ideal current ratio: > 1.5; “$1.5 received in cash every time debt of $1 must be paid within twelve months.” (range: 1.5 – 2.5) 
