@@ -2,7 +2,7 @@ import tkinter as tk
 import stocks
 import requests
 
-api_key = '0WB1WTPVWHB5QQCL'
+api_key = 'api-key'
 
 # Create the main Tkinter window
 root = tk.Tk()
@@ -33,22 +33,31 @@ def display_stock_info(stock_data):
     if(balance_sheet_reports):
         total_assets = float(balance_sheet_reports[0].total_assets)
         total_liabilities = float(balance_sheet_reports[0].total_liabilities)
-
         total_current_asset = float(balance_sheet_reports[0].total_current_assets)
         total_current_liability = float(balance_sheet_reports[0].total_current_liabilities)
+        inventory = float(balance_sheet_reports[0].inventory)
+        total_shareholder_equity = float(balance_sheet_reports[0].total_shareholder_equity)
+        shares_outstanding = float(balance_sheet_reports[0].common_stock_shares_outstanding)
 
-        #calculate high current ratio
         high_current = total_current_asset / total_current_liability
 
-        # Calculate debt to equity ratio
+        working_capital =  total_current_asset - total_current_liability
+
         dte = total_assets / total_liabilities
+
+        quick_ratio = (total_current_asset - inventory) / total_current_liability
+
+        pb_ratio = total_shareholder_equity / shares_outstanding
     else:
         dte = 'error with API'
         high_current = 'error with API'
+        working_capital = 'error with API'
+        quick_ratio = 'error with API'
+        pb_ratio = 'error with API'
 
 
     # Access the stock data and display it
-    stock_label.config(text=f"Symbol: {stock_data['ticker']}\nPrice: {stock_data['price']}\nDtE: {dte}\n high current ratio: {high_current}")
+    stock_label.config(text=f"Symbol: {stock_data['ticker']}\nPrice: {stock_data['price']}\nDtE: {dte}\n high current ratio: {high_current}\n working capital: {working_capital}\n quick ratio: {quick_ratio}\n p/b ratio: {pb_ratio}\n")
 
 
 # def update_backend_variable(stock_data):
