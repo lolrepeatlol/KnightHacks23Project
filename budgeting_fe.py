@@ -54,6 +54,7 @@ def on_configure(event):
 root = tk.Tk()
 root.title("Basic GUI Layout")  # title of the GUI window
 root.config(bg="#1e1e1e")  # specify background color
+root.title("View Budget")
 
 # Create 1st box
 checking = Frame(root, width=350, height=150)
