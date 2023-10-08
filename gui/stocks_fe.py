@@ -12,14 +12,18 @@ def display_stock_info(stock_data):
     stock_window = tk.Toplevel(root)
     stock_window.title("Information for Stock")
 
+    # Update symbol in stocks python file
+    stocks.update_symbol_value(stock_data)
+
     # Create a label to display stock information
-    stock_label = tk.Label(stock_window, text="", bg="3e3e43")
+    stock_label = tk.Label(stock_window, text="")
     stock_label.pack()
 
     # Access the stock data and display it
-    stock_label.config(text=f"Symbol: {stock_data['ticker']}\nPrice: {stock_data['price']}")
+    stock_label.config(text=f"Symbol: {stock_data['ticker']}\nPrice: {stock_data['price']}\n")
 
-    stocks.symbol = stock_data
+
+# def update_backend_variable(stock_data):
 
 
 # Access the stock data from the imported module
