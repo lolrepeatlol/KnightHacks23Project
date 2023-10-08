@@ -256,7 +256,11 @@ income_sheet_reports = []
 stock_quotes = []
 
 
-symbol = None # = input("Enter a stock symbol: ") # if we would do CLI input
+symbol = "initial value" # if we would do CLI input
+
+def update_symbol_value(new_value):
+    global symbol
+    symbol = new_value
 
 # Fetch balance sheet data for the stock symbol
 api_balance = get_balance_sheet(symbol, api_key)
@@ -302,6 +306,7 @@ for i in range(len(balance_sheet_reports)):
         # Append the result to the list
         debt_to_equity.append(debt_to_equity_ratio)
 
+        latestDTE = debt_to_equity[0]
         print(f"Debt to Equity for {balance_sheet_reports[i].fiscal_date}: {debt_to_equity_ratio}")
         '''
         Ideal current ratio: > 1.5; “$1.5 received in cash every time debt of $1 must be paid within twelve months.” (range: 1.5 – 2.5) 
@@ -311,6 +316,7 @@ for i in range(len(balance_sheet_reports)):
         '''
     else:
         print("unable to fetch")
+
 
 #High current ratio
 high_current_ratios = []
