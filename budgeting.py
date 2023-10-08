@@ -7,9 +7,11 @@ listOfStatements = statement.readlines()
 untilChar = '",'
 allTransactionsString = []
 allTransactionsFloat = []
+allOldTransactionFloar = []
 counterForArray = 0
 sumOfTransactionNotR = 0
 sumOfTransactionR = 0
+checkingTotal = 7000
 for x in listOfStatements:
     # gets rid of necessary white space
     x = x.strip()
@@ -28,7 +30,10 @@ for element in allTransactionsString:
     # changes the string to a float so we can store it into an float array later to use
     newElement = float(newString)
     allTransactionsFloat.append(newElement)
-print("old transaction", allTransactionsFloat)
+
+for element in allTransactionsFloat:
+    allOldTransactionFloar.append(element)
+
 counterForArray = 0
 sumOfRoundedUp = 0
 for transaction in allTransactionsFloat:
@@ -39,6 +44,8 @@ for transaction in allTransactionsFloat:
     sumOfTransactionR += allTransactionsFloat[counterForArray]
     counterForArray += 1
 sumOfRoundedUp = round(sumOfRoundedUp, 2)
+checkingTotal = checkingTotal - sumOfRoundedUp
+print("old transaction", allOldTransactionFloar)
 print("New ", allTransactionsFloat, "\n")
 print("sum of round ups", sumOfRoundedUp)
 print("sum of transactions without added roundup:", sumOfTransactionNotR)
