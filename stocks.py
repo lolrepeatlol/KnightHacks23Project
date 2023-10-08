@@ -1,6 +1,6 @@
 import requests
 
-api_key = 'I5EARLQU03IU3M1A'
+api_key = '25KI283QX1PSWXXC'
 
 # Define the API endpoint for retrieving most actively traded US stocks
 endpointAT = f'https://www.alphavantage.co/query?function=TOP_GAINERS_LOSERS&apikey={api_key}'
@@ -24,8 +24,8 @@ endpointAT2 = f'https://www.alphavantage.co/query?function=BALANCE_SHEET&apikey=
 responseAT2 = requests.get(endpointAT2)
 
 if responseAT2.status_code == 200 :
-    data2 = responseAT2.json() 
-    annualReports = data2.get('annualReports') 
+    data2 = responseAT2.json()
+    annualReports = data2.get('annualReports')
 
 
 
@@ -372,3 +372,45 @@ for i in range(len(balance_sheet_reports)):
             Evaluate D/E first, then ROE; companies with low D/E don’t have as high ROEs but they are often more sustainable 
             
 '''
+def create_graph():
+    print(f"{symbol['ticker']}")
+    # Create graph for stocks
+    endpointGraph = f"https://www.alphavantage.co/query?function=TIME_SERIES_WEEKLY_ADJUSTED&symbol={symbol['ticker']}&apikey={api_key}"
+
+    responseGraph = requests.get(endpointGraph)
+    dataG = responseGraph.json()
+
+    print(dataG)
+
+    time_series = dataG['Weekly Adjusted Time Series']
+
+    # Extracting historical data from JSON response
+    dates = []
+    closing_prices = []
+
+    for date, values in time_series.items():
+        dates.append(date)
+        closing_prices.append(float(values['4. close']))
+
+    plt.plot(dates, closing_prices)
+    plt.xlabel('Date')
+    plt.ylabel('Closing Price')
+    plt.title(f'Historical Stock Data for {symbol}')
+    plt.grid(True)
+
+    # Create a Figure and Axes for the plot (same as before)
+    fig, ax = plt.subplots()
+    ax.plot(dates, closing_prices)
+    ax.set_xlabel('Date')
+    ax.set_ylabel('Closing Price')
+    ax.set_title(f'Historical Stock Data for {symbol}')
+    ax.grid(True)
+
+    # Save the plot as an image
+    plt.savefig('stock_graph.png')
+
+    # Load the saved image (same as before)
+    img = Image.open('stock_graph.png')
+    img = ImageTk.PhotoImage(img)
+
+    return img
