@@ -1,10 +1,11 @@
 from tkinter import *
+import budgeting
 import tkinter as tk
 from tkinter import ttk
-import main
 from matplotlib.figure import Figure
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import random
+
 # Create a function to display the pie chart
 def show_pie_chart():
     # Sample data for the pie chart (you can replace this with your data)
@@ -76,6 +77,10 @@ transactionList.place(x= 420)
 transactionList.pack(side="bottom")
 show_pie_chart()
 show_pie_chartExpected()
+text_widget = tk.Text(root, width=30, height=10)
+text_widget.insert(tk.END, "This is a Text widget.\nYou can add and edit text here.")
+# Pack or place the Text widget in the window
+text_widget.place()
 
 """
 # Create Label widgets
